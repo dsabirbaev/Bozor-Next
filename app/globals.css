@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+ul {
+  list-style-type: none;
+}
+
+
+body {
+  font-family: TTInterfaceRegular;
+  font-weight: 400;
+  overflow-x: hidden;
+  background-color: #F5F7FA;
+}
+
+
+
+
+.container {
+  width: 100%;
+  max-width: 1225px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
