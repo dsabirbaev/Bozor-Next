@@ -16,9 +16,9 @@ export default function HomeLayout({
     <>
        <MinHeader />
        <Header />
-       <main className="h-full">
-           {children}
-       </main>
+        <main className="h-full">
+            {children}
+        </main>
        <Footer />
     </>
   )

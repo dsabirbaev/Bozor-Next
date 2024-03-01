@@ -19,6 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+      <link rel="icon" href="https://bozor.com/64x64.ico" sizes="any" />
         {children}
       </body>
     </html>

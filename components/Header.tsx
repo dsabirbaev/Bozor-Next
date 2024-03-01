@@ -41,7 +41,7 @@ const Header = () => {
           <div className="flex items-center justify-between cursor-pointer">
               <Link href="/catalog" title="Katalog" className="text-[12px] text-[#2B4FAB] flex items-center gap-x-2 h-[45px] px-[24px] rounded-md border-solid border-2 border-gray-100 font-bold">
                   <FaThList />
-                  <span className="font-['TTInterfaceSemiBold']">Katalog</span>
+                  <span className="font-semibold">Katalog</span>
               </Link>
           </div>
 
@@ -50,7 +50,7 @@ const Header = () => {
               <input className="placeholder:text-gray-400 ml-[16px] border-none outline-none bg-transparent w-full" type="text" placeholder="Mahsulotlarni topish" />
           </div>
 
-          <button  className="bg-[#2B4FAB] cursor-pointer hover:opacity-[0.8] transition-opacity text-white text-[12px] font-['TTInterfaceSemiBold'] flex items-center justify-center gap-x-2 rounded-md h-[45px] w-[190px] border-none outline-none">
+          <button  className="bg-[#2B4FAB] cursor-pointer hover:opacity-[0.8] transition-opacity text-white text-[12px] font-bold flex items-center justify-center gap-x-2 rounded-md h-[45px] w-[190px] border-none outline-none">
                 <FaTelegram className='text-[20px]'/>
                 <span>Manzilini kiriting</span>
           </button>
@@ -69,10 +69,10 @@ const Header = () => {
               <HiOutlineShoppingCart  className="text-[18px]"/>
           </Link>
 
-          <button title="Profil" className="cursor-pointer rounded-md border-none bg-[#F5F7FA] h-[45px] px-[13px]">
+          <Link href="/profile" title="Profil" className="flex items-center rounded-md border-none bg-[#F5F7FA] h-[45px] px-[13px]">
 
               <FaRegUser className="text-[18px]"/>
-          </button>
+          </Link>
 
 
         </div>
