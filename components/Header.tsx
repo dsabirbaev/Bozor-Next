@@ -6,7 +6,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 
-import { Dropdown, DropdownChangeEvent } from 'primereact/dropdown';
 
 
 //// react icons
@@ -18,17 +17,10 @@ import { HiOutlineShoppingCart } from "react-icons/hi2";
 import { IoHeartOutline } from "react-icons/io5";
 
 const Header = () => {
+  
+  
 
-  interface City {
-    name: string;
-    code: string;
-  }
-
-  const [selectedCity, setSelectedCity] = useState<City | null>(null);
-    const cities: City[] = [
-        { name: 'USD', code: 'us' },
-        { name: 'UZS', code: 'uz' },
-    ];
+  
   return (
     <header className='bg-white'>
       <div className='container'>
@@ -55,8 +47,7 @@ const Header = () => {
                 <span>Manzilini kiriting</span>
           </button>
 
-          <Dropdown value={selectedCity}  onChange={(e: DropdownChangeEvent) => setSelectedCity(e.value)} options={cities} optionLabel="name" 
-                placeholder="USD" className="text-[12px] rounded-md bg-[#F5F7FA] h-[45px] px-[13px] cursor-pointer ring-0 border-none w-fit" />
+          <div className="text-[12px] rounded-md bg-[#F5F7FA] h-[45px] px-[13px] cursor-pointer ring-0 border-none w-fit" />
 
 
           <Link href="/favorites" title="Saralanganlar" className="flex items-center rounded-md bg-[#F5F7FA] h-[45px] px-[13px]">
@@ -69,12 +60,13 @@ const Header = () => {
               <HiOutlineShoppingCart  className="text-[18px]"/>
           </Link>
 
-          <Link href="/profile" title="Profil" className="flex items-center rounded-md border-none bg-[#F5F7FA] h-[45px] px-[13px]">
+          <div title="Profil" className="flex items-center rounded-md border-none bg-[#F5F7FA] h-[45px] px-[13px] cursor-pointer">
 
               <FaRegUser className="text-[18px]"/>
-          </Link>
+             
+          </div>
 
-
+        
         </div>
       </div>
     </header>
