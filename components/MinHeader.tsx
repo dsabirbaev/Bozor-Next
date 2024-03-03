@@ -1,20 +1,30 @@
 "use client";
 
 import { useState } from "react";
-
-//// react icons
 import { FaTelegramPlane } from "react-icons/fa";
 import { LiaPhoneSolid } from "react-icons/lia";
-import { PiMapPinThin } from "react-icons/pi";
+import { Dropdown, DropdownChangeEvent } from 'primereact/dropdown';
+import Link from "next/link";
+
 
 const MinHeader = () => {
-   
+    interface City {
+        name: string;
+        code: string;
+    }
+    
+    const [selectedCity, setSelectedCity] = useState<City | null>(null);
+    const cities: City[] = [
+        { name: 'Uzb', code: 'uz' },
+        { name: 'Рус', code: 'ru' },
+        
+    ];
   return (
     <header className="bg-[#F5F7FA]">
         <div className="container">
             <div className="flex items-center justify-between h-[40px]">
                 <div className="flex items-center space-x-1 text-[12px]">
-                    <PiMapPinThin className="text-[14px]"/>
+                    <span className="pi pi-map-marker text-[#9A999B] text-[14px]"></span>
                     <span className="text-[#9A999B]">Manzil : </span>
                     <p>Toshkent</p>
                 </div>
@@ -32,7 +42,8 @@ const MinHeader = () => {
                         </a>
 
                        <div>
-                            <div  className="w-fit h-fit border-none ring-0 bg-transparent" />
+                       <Dropdown value={selectedCity} onChange={(e: DropdownChangeEvent) => setSelectedCity(e.value)} options={cities} optionLabel="name" 
+                            placeholder="Uzb" className="w-fit h-fit border-none ring-0 bg-transparent" />
                        </div>
 
                        
