@@ -4,7 +4,11 @@
 
 const Footer = () => {
   return (
-    <div>Footer</div>
+    <footer>
+      <div className="container">
+        Footer
+      </div>
+    </footer>
   )
 }
 

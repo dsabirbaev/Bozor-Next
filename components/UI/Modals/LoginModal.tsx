@@ -50,10 +50,10 @@ const LoginModal = () => {
     
     <>
       <Dialog header="Tizimga kiring yoki profil yarating" visible={isOpen} style={{ width: '40vw' }} onHide={() => toggleModal()}>
-          <label htmlFor="num">
+          <label htmlFor="num" className='relative'>
              <p className='mb-3 text-black'>Telefon raqami</p>
-
-             <InputMask id='num' onChange={(e) => setValue(e.target.value ?? '')} mask="99 999 99 99" placeholder="99 999 99 99" className='w-full mb-5'/>
+              <span className='absolute bottom-0 left-2 text-gray-500'>+998</span>
+             <InputMask id='num' onChange={(e) => setValue(e.target.value ?? '')} mask="99 999 99 99"  className='pl-14 w-full mb-5'/>
         
           </label>
          

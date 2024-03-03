@@ -66,37 +66,41 @@ useEffect(() => {
 }, []); 
 
   return (
-    
-    <Dialog header="Kirish" visible={isOpen} style={{ width: '40vw' }} onHide={() => toggleModal()}>
-        <Toast ref={toast} />
-        <label htmlFor="num">
-            <p className='mb-3 text-black'>Telefon raqami</p>
-            <InputText value={phoneNumber} className="mb-5 w-full rounded-lg" disabled/>
-        
-        </label>
-        <label htmlFor="num">
-            <p className='mb-3 text-black'>SMS Kod</p>
-            <InputText className="mb-5 w-full rounded-lg"  onChange={(e) => setSecret(e.target.value)} placeholder="SMS Kodni kiriting"/>
-        </label>
+    <>
+         <Toast ref={toast} />
+        <Dialog header="Kirish" visible={isOpen} style={{ width: '40vw' }} onHide={() => toggleModal()}>
+            
+            <label htmlFor="num">
+                <p className='mb-3 text-black'>Telefon raqami</p>
+                <InputText value={phoneNumber} className="mb-5 w-full rounded-lg" disabled/>
+            
+            </label>
+            <label htmlFor="num">
+                <p className='mb-3 text-black'>SMS Kod</p>
+                <InputText className="mb-5 w-full rounded-lg"  onChange={(e) => setSecret(e.target.value)} placeholder="SMS Kodni kiriting"/>
+            </label>
 
-        <div className="mb-5">
-            <p className="text-red-600 text-[14px] text-center font-medium flex items-center justify-center gap-x-2"> <PiArrowClockwiseFill className="animate-spin text-[15px]"/> Kodni qayta yuborish {time} sonya</p>
-        </div>
+            <div className="mb-5">
+                <p className="text-red-600 text-[14px] text-center font-medium flex items-center justify-center gap-x-2"> <PiArrowClockwiseFill className="animate-spin text-[15px]"/> Kodni qayta yuborish {time} sonya</p>
+            </div>
 
 
-        <Button onClick={() => verifyNumber()} className="w-full flex items-center justify-center bg-bluegray-600 hover:bg-bluegray-400 border-bluegray-700">
-            { 
-                loading ? (
-                  <div className="flex items-center justify-center ">
-                    <LuLoader2 className="animate-spin w-8 h-6"/>
-                  </div>
-                ) : (
-                  <span>Kirish</span>
-                )
-            }
-        </Button>
-        
-    </Dialog>
+            <Button onClick={() => verifyNumber()} className="w-full flex items-center justify-center bg-bluegray-600 hover:bg-bluegray-400 border-bluegray-700">
+                { 
+                    loading ? (
+                    <div className="flex items-center justify-center ">
+                        <LuLoader2 className="animate-spin w-8 h-6"/>
+                    </div>
+                    ) : (
+                    <span>Kirish</span>
+                    )
+                }
+            </Button>
+            
+        </Dialog>
+
+    </>
+   
   )
 }
 
