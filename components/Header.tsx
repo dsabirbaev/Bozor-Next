@@ -8,11 +8,12 @@ import Image from 'next/image'
 
 import { Dropdown, DropdownChangeEvent } from 'primereact/dropdown';
 import LoginModal from './UI/Modals/LoginModal';
-import useModalStore from '@/stores/modalStore';
+import {useModalStore} from '@/stores/modalStore';
 //// react icons
 import { FaThList } from "react-icons/fa";
 import { CiSearch } from "react-icons/ci";
-import { FaTelegram } from "react-icons/fa";
+
+import { FaLocationArrow } from "react-icons/fa";
 import { FaRegUser } from "react-icons/fa";
 import { HiOutlineShoppingCart } from "react-icons/hi2";
 import { IoHeartOutline } from "react-icons/io5";
@@ -53,7 +54,7 @@ const Header = () => {
           </div>
 
           <button  className="bg-[#2B4FAB] cursor-pointer hover:opacity-[0.8] transition-opacity text-white text-[12px] font-bold flex items-center justify-center gap-x-2 rounded-md h-[45px] w-[190px] border-none outline-none">
-                <FaTelegram className='text-[20px]'/>
+                <FaLocationArrow  className="text-[15px] text-white"/>
                 <span>Manzilini kiriting</span>
           </button>
 
@@ -71,8 +72,7 @@ const Header = () => {
               <HiOutlineShoppingCart  className="text-[18px]"/>
           </Link>
 
-          <div onClick={() => toggleModal()}  className="flex items-center rounded-md border-none bg-[#F5F7FA] h-[45px] px-[13px]">
-
+          <div onClick={() => toggleModal()}  className="cursor-pointer flex items-center rounded-md border-none bg-[#F5F7FA] h-[45px] px-[13px]">
               <FaRegUser className="text-[18px]"/>
           </div>
 

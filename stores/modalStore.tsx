@@ -13,4 +13,12 @@ const useModalStore = create<IModal>((set) => ({
     toggleModal: () => set((state) => ({ isOpen: !state.isOpen })),
 }));
 
-export default useModalStore;
+
+const useModalStoreVerify = create<IModal>((set) => ({
+    isOpen: true,
+    toggleModal: () => set((state) => ({ isOpen: !state.isOpen })),
+}));
+
+
+
+export { useModalStore, useModalStoreVerify }

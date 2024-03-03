@@ -4,6 +4,10 @@ import "./globals.css";
 import "primereact/resources/themes/lara-light-cyan/theme.css";
 
 
+
+import 'primereact/resources/primereact.min.css';
+
+
 const inter = Inter({ subsets: ["latin"], weight: "400" });
 
 export const metadata: Metadata = {
