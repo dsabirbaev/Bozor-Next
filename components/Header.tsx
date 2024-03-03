@@ -7,8 +7,8 @@ import Image from 'next/image'
 
 
 import { Dropdown, DropdownChangeEvent } from 'primereact/dropdown';
-
-
+import LoginModal from './UI/Modals/LoginModal';
+import useModalStore from '@/stores/modalStore';
 //// react icons
 import { FaThList } from "react-icons/fa";
 import { CiSearch } from "react-icons/ci";
@@ -18,6 +18,8 @@ import { HiOutlineShoppingCart } from "react-icons/hi2";
 import { IoHeartOutline } from "react-icons/io5";
 
 const Header = () => {
+
+  const { toggleModal } = useModalStore();
 
   interface City {
     name: string;
@@ -69,12 +71,12 @@ const Header = () => {
               <HiOutlineShoppingCart  className="text-[18px]"/>
           </Link>
 
-          <Link href="/profile" title="Profil" className="flex items-center rounded-md border-none bg-[#F5F7FA] h-[45px] px-[13px]">
+          <div onClick={() => toggleModal()}  className="flex items-center rounded-md border-none bg-[#F5F7FA] h-[45px] px-[13px]">
 
               <FaRegUser className="text-[18px]"/>
-          </Link>
+          </div>
 
-
+            <LoginModal/>
         </div>
       </div>
     </header>
