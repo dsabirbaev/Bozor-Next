@@ -8,7 +8,7 @@ const page = () => {
   
   return (
     <div className="pt-14">
-       <h2 className="text-[#020105] text-[30px] font-bold mb-[18px]">Profil</h2>
+       <h2 className="text-[#020105] text-[30px] font-['TTInterfaceBold'] mb-[18px]">Profil</h2>
 
        <div className="flex flex-col gap-y-8 bg-white rounded-[20px] py-[30px] px-[32px] ">
           <div className='flex justify-between'>
@@ -27,10 +27,10 @@ const page = () => {
           </div>
 
           <div className='flex gap-x-4 justify-end'>
-            <Link href="/" title='Bosh sahifa' className='text-[#e45746] bg-[#f5f5f7] text-[12px] py-[12px] px-[40px] rounded-[12px] hover:opacity-[0.6] transition-opacity'>
+            <Link href="/" title='Bosh sahifa' className='text-[#e45746] bg-[#f5f5f7] text-[12px] py-[12px] px-[40px] rounded-[12px] hover:opacity-[0.6] transition-opacity font-["TTInterfaceSemiBold"]'>
               Bekor qilish
             </Link>
-            <button className='text-white bg-[#2b4fab] text-[12px] py-[12px] px-[40px] rounded-[12px] outline-none border-none cursor-pointer hover:opacity-[0.6] transition-opacity'>
+            <button className='text-white bg-[#2b4fab] text-[12px] py-[12px] px-[40px] rounded-[12px] outline-none border-none cursor-pointer hover:opacity-[0.6] transition-opacity font-["TTInterfaceSemiBold"]'>
               Saqlash
             </button>
           </div>

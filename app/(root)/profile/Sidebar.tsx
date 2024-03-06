@@ -16,13 +16,14 @@ const Sidebar = () => {
   const [isActive, setIsActive] = useState<number>(1);
   
   const { toggleModal } = useModalStoreExit();
+
   const handleLinkClick = (num:number) => {
     setIsActive(num);
   };
   return (
     <>
         <div className="flex flex-col w-[300px]">
-            <div className="flex items-center text-[12px] mb-10">
+            <div className="flex items-center text-[12px] mb-10 font-['TTInterfaceMedium']">
                 <Link href="/" className="text-[#2b4fab]">Bosh sahifa</Link> <RiArrowRightSLine className="text-[20px] text-[#c2c2c3]"/>  <span className="text-[#c2c2c3]">Profile</span>
             </div>
 
@@ -42,7 +43,7 @@ const Sidebar = () => {
                                 <span className={`w-[35px] h-[35px] rounded-full ${isActive === 2 ? 'bg-[#2b4fab] text-white': 'bg-[#f5f5f7]'} flex items-center justify-center`}>  <BsCartDash className='text-[16px]' /></span> Mening buyurtmalarim
                             </Link>
                         </li>
-                        <li onClick={() => !toggleModal()} className='text-[12px] flex items-center gap-x-2 cursor-pointer'>
+                        <li onClick={() => toggleModal()} className='text-[12px] flex items-center gap-x-2 cursor-pointer'>
                             <span className='w-[35px] h-[35px] rounded-full bg-[#f5f5f7] flex items-center justify-center'> <RiLoginBoxLine  className='text-[16px]'/> </span>Chiqish
                         </li>
                         <ExitModal/>

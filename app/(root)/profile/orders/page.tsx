@@ -6,7 +6,7 @@ import "./style.css"
 const page = () => {
   return (
     <div className="pt-14">
-       <h2 className="text-[#020105] text-[30px] font-bold mb-[18px]">Mening buyurtmalarim</h2>
+       <h2 className="text-[#020105] text-[30px] mb-[18px] font-['TTInterfaceBold']">Mening buyurtmalarim</h2>
 
        <div className="orders">
           <TabView>

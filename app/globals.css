@@ -36,3 +36,30 @@ body {
   margin: 0 auto;
   padding: 0 20px;
 }
+
+
+
+@font-face {
+  font-family: TTInterfaceLight;
+  src: url(../assets/fonts/TTInterface/TTInterfaces-Light.ttf);
+}
+
+@font-face {
+  font-family: TTInterfaceRegular;
+  src: url(../assets/fonts/TTInterface/TTInterfaces-Regular.ttf);
+}
+
+@font-face {
+  font-family: TTInterfaceMedium;
+  src: url(../assets/fonts/TTInterface/TTInterfaces-Medium.ttf);
+}
+
+@font-face {
+  font-family: TTInterfaceSemiBold;
+  src: url(../assets/fonts/TTInterface/TTInterfaces-SemiBold.ttf);
+}
+
+@font-face {
+  font-family: TTInterfaceBold;
+  src: url(../assets/fonts/TTInterface/TTInterfaces-Bold.ttf);
+}

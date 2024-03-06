@@ -21,7 +21,7 @@ const useModalStoreVerify = create<IModal>((set) => ({
 
 
 const useModalStoreExit = create<IModal>((set) => ({
-    isOpen: true,
+    isOpen: false,
     toggleModal: () => set((state) => ({ isOpen: !state.isOpen })),
 }));
 
