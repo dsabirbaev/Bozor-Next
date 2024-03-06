@@ -1,0 +1,23 @@
+
+
+
+
+
+.orders .p-tabview-nav{
+    background-color: transparent;
+}
+.orders .p-tabview-nav-link {
+    background-color: transparent;
+}
+.orders .p-tabview-panels {
+    background-color: transparent;
+}
+
+.orders .p-tabview-title {
+    font-size: 12px;
+    color: #353437;
+    font-weight: 500;
+}
+.p-tabview-nav-link {
+    padding: 14px;
+}

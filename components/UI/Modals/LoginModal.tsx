@@ -1,10 +1,9 @@
 
 
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 
+//// store
 import {useModalStore} from '@/stores/modalStore';
-
-
 import { account, unique_id } from '@/lib/appwrite';
 
 import VerifyModal from './VerifyModal';
