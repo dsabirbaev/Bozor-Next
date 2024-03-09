@@ -29,7 +29,6 @@ const LoginModal = () => {
     setLoading(true);
     const phoneNumber = `+998${value?.replace(/\s/g, '')}`;
     try {
-        console.log(phoneNumber)
         const response = await account.createPhoneSession(
             unique_id,
             phoneNumber

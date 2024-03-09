@@ -4,13 +4,21 @@ import { useState, useRef, useEffect } from "react";
 import { FC } from "react";
 
 
+
 import { useRouter } from 'next/navigation'
 import { account } from '@/lib/appwrite';
 import { useModalStoreVerify } from '@/stores/modalStore';
+import { useProfileStore } from '@/stores/profile';
+
+import useCreateProfile from "@/hooks/useCreateProfile";
+import useCheckUserExists from "@/hooks/useCheckUserExists";
+
+import Profile from "@/app/(root)/profile/page";
 
 //// react icons
 import { LuLoader2 } from "react-icons/lu";
 import { PiArrowClockwiseFill } from "react-icons/pi";
+
 //// UI prime
 import { InputText } from "primereact/inputtext";
 import { Dialog } from 'primereact/dialog';
@@ -29,7 +37,7 @@ const VerifyModal: FC<IProps> = ({ value, userId }) => {
     const [secret, setSecret] = useState<string>('');
     const [loading, setLoading] = useState<boolean>(false);
     const [time, setTime] = useState<number>(60);
-
+    let { setCurrentProfile, currentProfile } = useProfileStore()
     const router = useRouter()
     const toast = useRef<Toast>(null);
 
@@ -43,12 +51,17 @@ const VerifyModal: FC<IProps> = ({ value, userId }) => {
                 secret
             );
             toggleModal();
-            console.log(response)
+            
             setLoading(false);
-
-           
+            setCurrentProfile(response?.userId)
+            const userExists = await useCheckUserExists(response.userId);
+            if (!userExists) {
+                useCreateProfile(response.userId, '', '', phoneNumber);
+            }
+                   
             toast.current?.show({ severity: 'success', summary: 'Muvaffaqiyat', detail: 'Tizimga kirdingiz', life: 2000 });
             await router.push("/profile")
+            
         } catch (error) {
             console.log(error);
             setLoading(false);
@@ -56,14 +69,17 @@ const VerifyModal: FC<IProps> = ({ value, userId }) => {
         }
     }
 
-useEffect(() => {
-    const intervalId = setInterval(() => {
-        
-        setTime((prevTime) => prevTime - 1);
-    }, 1000); 
-    return () => clearInterval(intervalId);
+   
 
-}, []); 
+    useEffect(() => {
+        
+        const intervalId = setInterval(() => {
+            
+            setTime((prevTime) => prevTime - 1);
+        }, 1000); 
+        return () => clearInterval(intervalId);
+
+    }, []); 
 
   return (
     <>

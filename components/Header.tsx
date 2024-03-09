@@ -5,7 +5,7 @@ import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 
-
+import { useProfileStore } from '@/stores/profile';
 
 import LoginModal from './UI/Modals/LoginModal';
 import {useModalStore} from '@/stores/modalStore';
@@ -26,7 +26,7 @@ const Header = () => {
   const toggleDropdown = () => {
      setDropdown(!dropdown)
   }
-  
+  let { setCurrentProfile, currentProfile } = useProfileStore()
   return (
     <header className='bg-white'>
       <div className='container'>
@@ -80,11 +80,19 @@ const Header = () => {
               
               <HiOutlineShoppingCart  className="text-[18px]"/>
           </Link>
+          {
+            currentProfile ? (
+              <Link href="/profile" className="cursor-pointer flex items-center rounded-md border-none bg-[#F5F7FA] h-[45px] px-[13px]">
+                <FaRegUser className="text-[18px]"/>
+              </Link>
+            ) : (
+              <div onClick={() => toggleModal()}  className="cursor-pointer flex items-center rounded-md border-none bg-[#F5F7FA] h-[45px] px-[13px]">
+                <FaRegUser className="text-[18px]"/>
+              </div>
 
-          <div onClick={() => toggleModal()}  className="cursor-pointer flex items-center rounded-md border-none bg-[#F5F7FA] h-[45px] px-[13px]">
-              <FaRegUser className="text-[18px]"/>
-          </div>
-
+            )
+          }  
+          
             <LoginModal/>
         </div>
       </div>

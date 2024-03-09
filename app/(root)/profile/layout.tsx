@@ -1,12 +1,14 @@
 
 
-import Link from 'next/link'
+
 import Sidebar from './Sidebar';
-//// react icons
-import { RiArrowRightSLine } from "react-icons/ri";
-import { FaRegUser } from "react-icons/fa";
-import { BsCartDash } from "react-icons/bs";
-import { RiLoginBoxLine } from "react-icons/ri";
+
+
+export const metadata: Metadata = {
+  title: "Bozor.com | Profil",
+  description: "Profil user",
+};
+
 
 export default function HomeLayout({
   children, 
