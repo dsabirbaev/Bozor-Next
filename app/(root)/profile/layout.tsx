@@ -22,7 +22,9 @@ export default function HomeLayout({
                 <div className='flex gap-x-6'>
                     <Sidebar />
                     <div className='w-full'>
+                      
                         {children}
+                        
                     </div>
                 </div>
             </div>

@@ -7,13 +7,18 @@ import { FC } from "react";
 
 import { useRouter } from 'next/navigation'
 import { account } from '@/lib/appwrite';
+
+//// stores
 import { useModalStoreVerify } from '@/stores/modalStore';
 import { useProfileStore } from '@/stores/profile';
+import { useAuthStore } from '@/stores/authStore';
 
+
+//// hooks
 import useCreateProfile from "@/hooks/useCreateProfile";
 import useCheckUserExists from "@/hooks/useCheckUserExists";
 
-import Profile from "@/app/(root)/profile/page";
+
 
 //// react icons
 import { LuLoader2 } from "react-icons/lu";
@@ -42,7 +47,7 @@ const VerifyModal: FC<IProps> = ({ value, userId }) => {
     const toast = useRef<Toast>(null);
 
     const phoneNumber = `+998${value?.replace(/\s/g, '')}`;
-   
+    const { openLogin } = useAuthStore();
     const verifyNumber = async() => {
         setLoading(true);
         try {
@@ -51,7 +56,7 @@ const VerifyModal: FC<IProps> = ({ value, userId }) => {
                 secret
             );
             toggleModal();
-            
+            openLogin();
             setLoading(false);
             setCurrentProfile(response?.userId)
             const userExists = await useCheckUserExists(response.userId);
@@ -83,7 +88,7 @@ const VerifyModal: FC<IProps> = ({ value, userId }) => {
 
   return (
     <>
-         <Toast ref={toast} />
+        <Toast ref={toast} />
         <Dialog header="Kirish" visible={isOpen} style={{ width: '40vw' }} onHide={() => toggleModal()}>
             
             <label htmlFor="num">

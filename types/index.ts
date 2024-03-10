@@ -10,11 +10,6 @@ export interface Profile {
 }
 
 
-export interface ProfilePageTypes {
-    params: { id: string; };
-}
 
 
-export interface User {
-    id: string,
-}
+

@@ -5,10 +5,13 @@ import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 
-import { useProfileStore } from '@/stores/profile';
+
 
 import LoginModal from './UI/Modals/LoginModal';
 import {useModalStore} from '@/stores/modalStore';
+import { useAuthStore } from '@/stores/authStore';
+
+
 //// react icons
 import { FaThList } from "react-icons/fa";
 import { CiSearch } from "react-icons/ci";
@@ -19,14 +22,14 @@ import { HiOutlineShoppingCart } from "react-icons/hi2";
 import { IoHeartOutline } from "react-icons/io5";
 
 const Header = () => {
-
+  const { isLogin } = useAuthStore();
   const { toggleModal } = useModalStore();
-
+  
   const[dropdown, setDropdown] = useState(false);
   const toggleDropdown = () => {
      setDropdown(!dropdown)
   }
-  let { setCurrentProfile, currentProfile } = useProfileStore()
+  
   return (
     <header className='bg-white'>
       <div className='container'>
@@ -81,7 +84,7 @@ const Header = () => {
               <HiOutlineShoppingCart  className="text-[18px]"/>
           </Link>
           {
-            currentProfile ? (
+            isLogin ? (
               <Link href="/profile" className="cursor-pointer flex items-center rounded-md border-none bg-[#F5F7FA] h-[45px] px-[13px]">
                 <FaRegUser className="text-[18px]"/>
               </Link>
