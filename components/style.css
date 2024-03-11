@@ -1,0 +1,23 @@
+
+
+
+#intro  .p-carousel{
+    position: relative;
+}
+#intro  .p-carousel .p-carousel-prev {
+    position: absolute;
+    left: 20px;
+    background-color: #FFFFFF8C;
+    z-index: 99;
+    width: 40px;
+    height: 40px;
+}
+
+#intro  .p-carousel .p-carousel-next {
+    position: absolute;
+    right: 20px;
+    background-color: #FFFFFF8C;
+    z-index: 99;
+    width: 40px;
+    height: 40px;
+}
