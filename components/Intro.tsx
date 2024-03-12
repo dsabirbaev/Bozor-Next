@@ -1,6 +1,6 @@
 "use client";
 
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 import { Carousel, CarouselResponsiveOption } from 'primereact/carousel';
 import { first, second, third } from '@/assets/images';
 
@@ -8,7 +8,7 @@ import "./style.css"
 
 const Intro = () => {
   
-  const products: string[] = [first, second, third];
+  const products: StaticImageData[] = [first, second, third];
 
   const responsiveOptions: CarouselResponsiveOption[] = [
       {

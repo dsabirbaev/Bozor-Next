@@ -19,7 +19,7 @@ import { LuLoader2 } from "react-icons/lu";
 const page = () =>  {
   let { setCurrentProfile, currentProfile } = useProfileStore()
   const { isLogin } = useAuthStore();
-  const userId = currentProfile?.user_id
+  const userId = currentProfile?.user_id ?? '';
  
   const [userName, setUserName] = useState<string | ''>('');
   const [userEmail, setUserEmail] = useState<string | ''>('');

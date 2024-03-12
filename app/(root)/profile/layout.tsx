@@ -1,5 +1,5 @@
 
-
+import type { Metadata } from "next";
 
 import Sidebar from './Sidebar';
 
