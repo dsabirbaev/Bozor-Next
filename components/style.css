@@ -21,3 +21,32 @@
     width: 40px;
     height: 40px;
 }
+
+.brand-list li img{
+    transition: 0.5s;
+
+    &:hover{
+        transform: scale(1.2);
+    }
+}
+
+.brend-list__first li{
+    border: 1px solid #f5f5f7;
+}
+.brend-list__first li{
+    border-top: none;
+}
+.brend-list__first li:nth-child(1), .brend-list__second li:nth-child(1){
+    border-left: none;
+}
+.brend-list__first li:nth-child(5),.brend-list__second li:nth-child(5){
+    border-right: none;
+}
+
+.brend-list__second li{
+    border: 1px solid #f5f5f7;
+}
+
+.brend-list__second li{
+    border-bottom: none;
+}
