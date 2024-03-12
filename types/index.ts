@@ -11,5 +11,17 @@ export interface Profile {
 
 
 
+export interface ICatalogCard {
+    title: string;
+    name1: string;
+    name2: string;
+    name3: string;
+    name4: string;
+    img1: string;
+    img2: string;
+    img3: string;
+    img4: string;
+}
+
 
 
