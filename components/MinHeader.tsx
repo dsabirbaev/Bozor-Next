@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-
+import Link from "next/link";
 
 
 //// react icons
@@ -51,6 +51,10 @@ const MinHeader = () => {
 
                        
                     </div>
+
+                    <Link href="admin-dashboard" className="cursor-pointer font-bold p-2  bg-blue-600 text-white text-md">
+                        Admin
+                    </Link>
                 </div>
                     
                 
