@@ -8,8 +8,10 @@ import Image from 'next/image'
 
 
 import LoginModal from './UI/Modals/LoginModal';
+
+//// stores
 import {useModalStore} from '@/stores/modalStore';
-import { useAuthStore } from '@/stores/authStore';
+import { useProfileStore } from '@/stores/profile';
 
 
 //// react icons
@@ -22,8 +24,9 @@ import { HiOutlineShoppingCart } from "react-icons/hi2";
 import { IoHeartOutline } from "react-icons/io5";
 
 const Header = () => {
-  const { isLogin } = useAuthStore();
+  
   const { toggleModal } = useModalStore();
+  let { currentProfile } = useProfileStore()
   
   const[dropdown, setDropdown] = useState(false);
   const toggleDropdown = () => {
@@ -84,7 +87,7 @@ const Header = () => {
               <HiOutlineShoppingCart  className="text-[18px]"/>
           </Link>
           {
-            isLogin ? (
+            currentProfile?.user_id ? (
               <Link href="/profile" className="cursor-pointer flex items-center rounded-md border-none bg-[#F5F7FA] h-[45px] px-[13px]">
                 <FaRegUser className="text-[18px]"/>
               </Link>

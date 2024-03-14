@@ -5,7 +5,6 @@ import Link from 'next/link';
 
 //// stores
 import { useProfileStore } from '@/stores/profile';
-import { useAuthStore } from '@/stores/authStore';
 
 //// hooks
 import useUpdateProfile from '@/hooks/useUpdateProfile';
@@ -18,7 +17,7 @@ import { LuLoader2 } from "react-icons/lu";
 
 const page = () =>  {
   let { setCurrentProfile, currentProfile } = useProfileStore()
-  const { isLogin } = useAuthStore();
+ 
   const userId = currentProfile?.user_id ?? '';
  
   const [userName, setUserName] = useState<string | ''>('');
@@ -51,7 +50,7 @@ const page = () =>  {
       setUserName(currentProfile.name);
       setUserEmail(currentProfile.email)
     }
-    if (!isLogin) {
+    if (!userId) {
       router.push("/");
     }
 
@@ -61,7 +60,7 @@ const page = () =>  {
   return (
     <>
       {
-        isLogin ? (
+        userId ? (
           <div className="pt-14">
             <Toast ref={toast} />
             <h2 className="text-[#020105] text-[30px] font-['TTInterfaceBold'] mb-[18px]">Profil</h2>

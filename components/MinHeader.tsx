@@ -4,6 +4,10 @@ import { useState } from "react";
 import Link from "next/link";
 
 
+//// stores
+
+import { useProfileStore } from '@/stores/profile';
+
 //// react icons
 import { FaTelegramPlane } from "react-icons/fa";
 import { LiaPhoneSolid } from "react-icons/lia";
@@ -11,6 +15,8 @@ import { PiMapPinThin } from "react-icons/pi";
 import { SlArrowDown } from "react-icons/sl";
 
 const MinHeader = () => {
+
+  let { currentProfile } = useProfileStore()
   const[dropdown, setDropdown] = useState(false);
   const toggleDropdown = () => {
      setDropdown(!dropdown)
@@ -51,10 +57,14 @@ const MinHeader = () => {
 
                        
                     </div>
-
-                    <Link href="admin-dashboard" className="cursor-pointer font-bold p-2  bg-blue-600 text-white text-md">
-                        Admin
-                    </Link>
+                        {
+                            currentProfile?.user_id === "65e44783c140fbe5955d" ? (
+                                <Link href="/admin-dashboard" className="cursor-pointer font-bold p-2  bg-blue-600 text-white text-md">
+                                    Admin
+                                </Link>
+                            ): null
+                        }
+                   
                 </div>
                     
                 

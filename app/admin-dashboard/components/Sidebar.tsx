@@ -12,9 +12,9 @@ const Sidebar = () => {
      w-[330px]  dark:border-gray-800 pt-4">
 
         <div className="flex flex-col gap-y-6 justify-between pl-3 pb-4  h-full">
-            <div className="cursor-pointer">
+            <Link href="/admin-dashboard" className="cursor-pointer">
                 <h2 className="font-bold font-['TTInterfaceBold']">Admin Dashboard</h2>
-            </div>
+            </Link>
 
             <div className="flex flex-col justify-between h-full w-full">
                 <ul className="pl-0">
@@ -29,7 +29,7 @@ const Sidebar = () => {
                         </Link>
                     </li>
                 </ul>
-                <button className="hover:bg-white w-full flex text-lg font-['TTInterfaceMedium'] bg-transparent border-none outline-none">
+                <button className="hover:bg-blue-300 w-full flex text-lg font-['TTInterfaceMedium'] bg-transparent border-none outline-none">
                     <Link href="/" className="px-2 py-3 w-full flex items-center gap-x-2">
                         <CgLogOut className="text-xl"/> <span>Log Out</span>
                     </Link>

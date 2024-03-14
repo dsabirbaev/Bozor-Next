@@ -8,6 +8,7 @@ import { Profile } from '@/types';
 interface ProfileStore {
     currentProfile: Profile | null;
     setCurrentProfile: (userId: string) => void;
+    clearProfile: () => void;
 }
 
 export const useProfileStore = create<ProfileStore>()( 
@@ -20,6 +21,9 @@ export const useProfileStore = create<ProfileStore>()(
                     const result = await useGetProfileByUserId(userId)
                     set({ currentProfile: result });
                 },
+                clearProfile: () => {
+                    set({ currentProfile: null });
+                }
             }),
             { 
                 name: 'store', 

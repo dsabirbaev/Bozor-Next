@@ -1,7 +1,7 @@
 
 //// stores
 import { useModalStoreExit } from '@/stores/modalStore';
-import { useAuthStore } from '@/stores/authStore';
+import { useProfileStore } from '@/stores/profile';
 
 //// UI prime react
 import { Dialog } from 'primereact/dialog';
@@ -12,14 +12,14 @@ import { useRouter } from 'next/navigation'
 
 const ExitModal = () => {
   const { isOpen, toggleModal } = useModalStoreExit();
-  const { closeLogin } = useAuthStore();
+  let { clearProfile } = useProfileStore()
   const router = useRouter()
 
   const logout = async () => {
    
     try {
         await account.deleteSession('current');
-        closeLogin()
+        clearProfile()
         toggleModal()
         router.push("/")
         

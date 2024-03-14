@@ -11,13 +11,13 @@ const useCreateProfile = async(userId: string, name: string, email: string, phon
         phone: phone
     }
     try{
-        const res = await database.createDocument(
+        await database.createDocument(
             String(process.env.NEXT_PUBLIC_DATABASE_ID), 
             String(process.env.NEXT_PUBLIC_COLLECTION_ID_PROFILE),
             unique_id, 
             data
         );
-        console.log(res)
+        
     }catch(error){
         throw error
     }

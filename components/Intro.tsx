@@ -36,7 +36,7 @@ const Intro = () => {
   const productTemplate = (products: string) => {
     return (
         <div className="border-1 surface-border  m-2 text-center w-full">
-           <Image src={products} width={1100} height={250} alt="image" className='rounded-xl w-full' />
+           <Image src={products} width={1100} height={250} alt="image" className='rounded-xl w-full h-auto' />
         </div>
     );
   };

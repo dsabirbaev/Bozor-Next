@@ -11,7 +11,7 @@ import { account } from '@/lib/appwrite';
 //// stores
 import { useModalStoreVerify } from '@/stores/modalStore';
 import { useProfileStore } from '@/stores/profile';
-import { useAuthStore } from '@/stores/authStore';
+
 
 
 //// hooks
@@ -47,7 +47,8 @@ const VerifyModal: FC<IProps> = ({ value, userId }) => {
     const toast = useRef<Toast>(null);
 
     const phoneNumber = `+998${value?.replace(/\s/g, '')}`;
-    const { openLogin } = useAuthStore();
+    
+
     const verifyNumber = async() => {
         setLoading(true);
         try {
@@ -56,7 +57,7 @@ const VerifyModal: FC<IProps> = ({ value, userId }) => {
                 secret
             );
             toggleModal();
-            openLogin();
+            
             setLoading(false);
             setCurrentProfile(response?.userId)
             const userExists = await useCheckUserExists(response.userId);
