@@ -1,11 +1,14 @@
 "use client";
 
 import { useEffect, useState } from 'react'
-import { database } from '@/lib/appwrite'
 import dayjs from 'dayjs';
 
-import { Column } from 'primereact/column';
+
 import { Skeleton } from 'primereact/skeleton';
+
+//// hooks
+import useGetAllUsers from '@/hooks/useGetAllUsers';
+
 //// types
 import { IUsers } from '@/types';
 const page = () => {
@@ -16,11 +19,7 @@ const page = () => {
   const getAllUsers = async() => {
     setLoading(true);
     try{
-      const res = await database.listDocuments(
-        String(process.env.NEXT_PUBLIC_DATABASE_ID), 
-        String(process.env.NEXT_PUBLIC_COLLECTION_ID_PROFILE)
-      )
-      
+      const res = await useGetAllUsers(); 
       setUsers(res?.documents.map(doc => ({
         user_id: doc.user_id,
         name: doc.name,
@@ -30,7 +29,6 @@ const page = () => {
       })))
       setLoading(false)
     }catch(error){
-      throw error
       setLoading(false);
     }
    

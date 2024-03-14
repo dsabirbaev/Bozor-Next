@@ -69,7 +69,7 @@ const VerifyModal: FC<IProps> = ({ value, userId }) => {
             await router.push("/profile")
             
         } catch (error) {
-            console.log(error);
+            
             setLoading(false);
             toast.current?.show({ severity: 'error', summary: 'Xato', detail: 'Tizimda xatolik bo\'ldi', life: 2000 });
         }

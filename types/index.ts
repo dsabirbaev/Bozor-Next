@@ -34,3 +34,8 @@ export interface IUsers {
 }
 
 
+export interface ICategories {
+    name: string,
+    $id: string
+}
+
