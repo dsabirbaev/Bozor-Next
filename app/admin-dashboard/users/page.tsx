@@ -19,7 +19,8 @@ const page = () => {
   const getAllUsers = async() => {
     setLoading(true);
     try{
-      const res = await useGetAllUsers(); 
+      const res = await useGetAllUsers();
+    
       setUsers(res?.documents.map(doc => ({
         user_id: doc.user_id,
         name: doc.name,
@@ -27,9 +28,11 @@ const page = () => {
         phone: doc.phone,
         $createdAt: doc.$createdAt
       })))
-      setLoading(false)
+     
     }catch(error){
-      setLoading(false);
+      throw error
+    }finally {
+      setLoading(false)
     }
    
 
@@ -54,7 +57,7 @@ const page = () => {
           <tbody className='bg-white'>
            {
             loading ? (
-              <tr>
+              <tr >
                 <th className='w-[10rem]'>
                   <Skeleton  width='10rem' className="m-1"></Skeleton>
                 </th>
@@ -71,6 +74,8 @@ const page = () => {
                   <Skeleton  width='10rem' className="m-1"></Skeleton>
                 </th>
               </tr>
+              
+             
             ) : (
                 users?.map((item) => (
                   <tr key={item?.user_id}>

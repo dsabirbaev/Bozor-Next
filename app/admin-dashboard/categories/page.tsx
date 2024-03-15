@@ -50,8 +50,10 @@ const page = () => {
           name: doc.name,
           $id: doc.$id
         })))
-        setLoadingCategory(false)
+       
     }catch(error){
+      throw error
+    }finally {
       setLoadingCategory(false)
     }
   }
@@ -81,15 +83,19 @@ const page = () => {
         <ul className="list-category flex flex-col gap-y-2">
             {
               loadingCategory ? (
-                <Skeleton height="2rem" className="mb-2" borderRadius="16px"></Skeleton>
+                
+                  <Skeleton  height="2rem" className="mb-2" borderRadius="16px"></Skeleton>
+
               ) : (
                 categories?.map((item, index) => (
                   <li key={item?.$id} className=" p-2 ">
                     <span>{index+1}. </span>
                     <span className="text-lg">{item?.name}</span>
                   </li>
+                
                 ))
               )
+              
             }
         </ul>
        

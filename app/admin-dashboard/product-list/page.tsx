@@ -96,6 +96,7 @@ const page = () => {
                 </th>
                
               </tr>
+              
             ) : (
                 products?.map((item) => (
                   <tr key={item?.$id} className='text-[12px]'>

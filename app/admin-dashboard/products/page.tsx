@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from 'react';
-
+import Image from 'next/image';
 
 //// hooks
 import useGetAllCategory from "@/hooks/useGetAllCategory";
@@ -136,6 +136,12 @@ const page = () => {
               }}
             />
           </div>
+          {
+            image.length ? (
+              <Image src={image} width={200} height={250} alt='image' className='bg-red w-full object-contain rounded-md' />
+            ) : null
+          }
+         
           
           <Button onClick={() => addProduct()} className="flex items-center justify-center bg-bluegray-600 hover:bg-bluegray-400 border-bluegray-700 w-full">
               { 

@@ -1,6 +1,8 @@
+"use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link"
-
+import { usePathname } from "next/navigation";
 //// react icons
 import { RxDashboard } from "react-icons/rx";
 import { LuUsers2 } from "react-icons/lu";
@@ -10,7 +12,23 @@ import { BiCartAdd } from "react-icons/bi";
 import { CiBoxList } from "react-icons/ci";
 
 
+
 const Sidebar = () => {
+    const pathname = usePathname();
+    const [activePath, setActivePath] = useState('');
+  
+    useEffect(() => {
+        setActivePath(pathname);
+    }, [pathname]);
+  
+    const menuItems = [
+        { path: "/admin-dashboard", name: "Dashboard", icon: RxDashboard },
+        { path: "/admin-dashboard/users", name: "Users", icon: LuUsers2 },
+        { path: "/admin-dashboard/categories", name: "Categories", icon: TbCategoryPlus },
+        { path: "/admin-dashboard/products", name: "Product Add", icon: BiCartAdd },
+        { path: "/admin-dashboard/product-list", name: "Product List", icon: CiBoxList },
+    ];
+
   return (
     <div className="fixed top-0 left-0 bottom-0 z-[1000] h-screen dark:bg-gray-900 bg-[#f0f4f8]
      w-[330px]  dark:border-gray-800">
@@ -22,31 +40,13 @@ const Sidebar = () => {
 
             <div className="flex flex-col justify-between h-full w-full">
                 <ul className="pl-0">
-                    <li className=" hover:bg-blue-300 w-full flex text-lg font-['TTInterfaceMedium']">
-                        <Link href="/admin-dashboard" className="px-2 py-3 w-full flex items-center gap-x-2  focus:bg-white">
-                            <RxDashboard className="text-xl"/> <span>Dashboard</span>
+                {menuItems.map(({ path, name, icon: Icon }) => (
+                    <li key={path} className={`hover:bg-blue-300 w-full flex text-lg font-['TTInterfaceMedium'] ${activePath === path ? 'bg-white' : ''}`}>
+                        <Link href={path} className="px-2 py-3 w-full flex items-center gap-x-2">
+                        <Icon className="text-xl"/> <span>{name}</span>
                         </Link>
                     </li>
-                    <li className=" hover:bg-blue-300  w-full flex text-lg font-['TTInterfaceMedium']">
-                        <Link href="/admin-dashboard/users" className="px-2 py-3 w-full flex items-center gap-x-2  focus:bg-white ">
-                            <LuUsers2 className="text-xl"/> <span>Users</span>
-                        </Link>
-                    </li>
-                    <li className=" hover:bg-blue-300  w-full flex text-lg font-['TTInterfaceMedium']">
-                        <Link href="/admin-dashboard/categories" className="px-2 py-3 w-full flex items-center gap-x-2  focus:bg-white ">
-                            <TbCategoryPlus className="text-xl"/> <span>Categories</span>
-                        </Link>
-                    </li>
-                    <li className=" hover:bg-blue-300  w-full flex text-lg font-['TTInterfaceMedium']">
-                        <Link href="/admin-dashboard/products" className="px-2 py-3 w-full flex items-center gap-x-2  focus:bg-white ">
-                            <BiCartAdd className="text-xl"/> <span>Product Add</span>
-                        </Link>
-                    </li>
-                    <li className=" hover:bg-blue-300  w-full flex text-lg font-['TTInterfaceMedium']">
-                        <Link href="/admin-dashboard/product-list" className="px-2 py-3 w-full flex items-center gap-x-2  focus:bg-white ">
-                            <CiBoxList className="text-xl"/> <span>Product List</span>
-                        </Link>
-                    </li>
+                ))}
                 </ul>
                 <button className="hover:bg-blue-300 w-full flex text-lg font-['TTInterfaceMedium'] bg-transparent border-none outline-none">
                     <Link href="/" className="px-2 py-3 w-full flex items-center gap-x-2">

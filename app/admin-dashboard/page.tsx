@@ -14,8 +14,7 @@ import { HiTemplate } from "react-icons/hi";
 import { BiLoaderCircle } from "react-icons/bi";
 
 
-//// react UI
-import { Skeleton } from 'primereact/skeleton';
+
 const page = () => {
 
   const [users, setUsers] = useState<number>();
