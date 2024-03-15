@@ -7,7 +7,7 @@
 
 import { database, unique_id } from "@/lib/appwrite";
 
-const useCreateProduct = async(name: string, brand: string, description: string, country: string, code: string, sold: string, category: string, price: string) => {
+const useCreateProduct = async(name: string, brand: string, description: string, country: string, code: string, sold: string, category: string, price: string, image: string) => {
     const data = {
         name: name,
         brand: brand,
@@ -16,7 +16,8 @@ const useCreateProduct = async(name: string, brand: string, description: string,
         code: code,
         sold: sold,
         category: category,
-        price: price
+        price: price,
+        image: image
     }
     try{
         return await database.createDocument(

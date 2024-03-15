@@ -7,6 +7,9 @@ import { LuUsers2 } from "react-icons/lu";
 import { CgLogOut } from "react-icons/cg";
 import { TbCategoryPlus } from "react-icons/tb";
 import { BiCartAdd } from "react-icons/bi";
+import { CiBoxList } from "react-icons/ci";
+
+
 const Sidebar = () => {
   return (
     <div className="fixed top-0 left-0 bottom-0 z-[1000] h-screen dark:bg-gray-900 bg-[#f0f4f8]
@@ -36,7 +39,12 @@ const Sidebar = () => {
                     </li>
                     <li className=" hover:bg-blue-300  w-full flex text-lg font-['TTInterfaceMedium']">
                         <Link href="/admin-dashboard/products" className="px-2 py-3 w-full flex items-center gap-x-2  focus:bg-white ">
-                            <BiCartAdd className="text-xl"/> <span>Products</span>
+                            <BiCartAdd className="text-xl"/> <span>Product Add</span>
+                        </Link>
+                    </li>
+                    <li className=" hover:bg-blue-300  w-full flex text-lg font-['TTInterfaceMedium']">
+                        <Link href="/admin-dashboard/product-list" className="px-2 py-3 w-full flex items-center gap-x-2  focus:bg-white ">
+                            <CiBoxList className="text-xl"/> <span>Product List</span>
                         </Link>
                     </li>
                 </ul>
