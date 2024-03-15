@@ -39,3 +39,16 @@ export interface ICategories {
     $id: string
 }
 
+export interface IProducts {
+    name: string,
+    brand: string,
+    $id: string,
+    description: string,
+    country: string,
+    image: string,
+    code: string,
+    sold: string,
+    category: string,
+    price: string
+}
+

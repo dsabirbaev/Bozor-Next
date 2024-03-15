@@ -110,7 +110,7 @@ const page = () => {
 
         {
           
-          <div className="w-[300px] h-[200px] bg-green-400 text-white p-4 flex flex-col justify-between rounded-md">
+          <div className="w-[300px] h-[200px] bg-orange-400 text-white p-4 flex flex-col justify-between rounded-md">
             <p className="text-2xl font-['TTInterfaceSemiBold']">Products</p>
 
             <div className="flex items-center justify-between">

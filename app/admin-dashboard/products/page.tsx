@@ -1,26 +1,28 @@
 "use client";
 
-import { useState, useEffect } from 'react';
-
-import { database, unique_id } from '@/lib/appwrite';
-
+import { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 
 //// hooks
 import useGetAllCategory from "@/hooks/useGetAllCategory";
-
+import useCreateProduct from '@/hooks/useCreateProduct';
+import useGetAllProducts from "@/hooks/useGetAllProducts";
 
 //// types
 import { ICategories } from "@/types";
+import { IProducts } from '@/types';
 
 //// react UI
 import { InputText } from 'primereact/inputtext';
 import { InputTextarea } from 'primereact/inputtextarea';
 import { Button } from 'primereact/button';
-
+import { Toast } from 'primereact/toast';
+import { Skeleton } from 'primereact/skeleton';
 
 
 //// react icons
 import { LuLoader2 } from "react-icons/lu";
+
 
 const page = () => {
 
@@ -35,32 +37,21 @@ const page = () => {
   const[categoryName, setCategoryName] = useState<string>("");
  
   const [categories, setCategories] = useState<ICategories[]>([])
+  const [products, setProducts] = useState<IProducts[]>([]);
+
   const [loading, setLoading] = useState<boolean>(false);
+  const [loadingProducs, setLoadingProducts] = useState<boolean>(false);
 
+  const toast = useRef<Toast>(null);
   const addProduct = async() => {
-    const data = {
-      name: name,
-      brand: brand,
-      description: description,
-      country: country,
-      code: code,
-      sold: sold,
-      category: categoryName,
-      price: price
-    }
-    // console.log(data)
+    setLoading(true)
     try{
-
-      const res =  await database.createDocument(
-        String(process.env.NEXT_PUBLIC_DATABASE_ID), 
-        String(process.env.NEXT_PUBLIC_COLLECTION_ID_PRODUCT),
-        unique_id, 
-        data
-      );
-      
-      console.log(res)
+       await useCreateProduct(name, brand, description, country, code, sold, categoryName, price);
+       toast.current?.show({ severity: 'success', summary: 'Added', detail: 'Added product', life: 2000 });
+       setLoading(false)
     }catch(error){
-      throw error
+      setLoading(false)
+      toast.current?.show({ severity: 'error', summary: 'Error', detail: 'Failed network', life: 2000 });
     }
   }
 
@@ -78,12 +69,41 @@ const page = () => {
      
     }
   }
+
+  const getAllProducts = async() => {
+    setLoadingProducts(true)
+    try{
+      const res = await useGetAllProducts();
+      setProducts(
+        res?.documents.map((doc) => ({
+          name: doc.name,
+          brand: doc.brand,
+          $id: doc.$id,
+          description: doc.description,
+          country: doc.country,
+          image: doc.image,
+          code: doc.code,
+          sold: doc.sold,
+          category: doc.category,
+          price: doc.price
+
+        }))
+      );
+      setLoadingProducts(false)
+    }catch(error){
+      setLoadingProducts(false)
+    }
+  }
   useEffect(() => {
     getAllCategory();
+    getAllProducts();
   }, [])
+
+
   return (
     <div>
-      <div className='flex flex-col gap-y-2'>
+      <Toast ref={toast} />
+      <div className='flex flex-col gap-y-2 mb-10'>
         <InputText value={name} onChange={(e) => setName(e.target.value)} placeholder='Name product' className='w-[35rem]'/>
         
         <InputText value={brand} onChange={(e) => setBrand(e.target.value)} placeholder='Brand product' className='w-[35rem]'/>
@@ -116,6 +136,76 @@ const page = () => {
                     )
                 }
         </Button>
+      </div>
+
+      <div>
+        <h2 className='text-center mb-5'>Product List</h2>
+        
+        <div>
+        <table className='w-full'>
+          <thead className='bg-slate-400'>
+            <tr>
+              <th className='py-2'>ID</th>
+              <th>Name</th>
+              <th>Brand</th>
+              <th>Country</th>
+              <th>Code</th>
+              <th>Sold</th>
+              <th>Category</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody className='bg-white'>
+           {
+            loadingProducs ? (
+              <tr>
+                <th className='w-[10rem]'>
+                  <Skeleton  width='10rem' className="m-1"></Skeleton>
+                </th>
+                <th className='w-[10rem]'>
+                  <Skeleton  width='10rem' className="m-1"></Skeleton>
+                </th>
+                <th className='w-[10rem]'>
+                  <Skeleton  width='10rem' className="m-1"></Skeleton>
+                </th>
+                <th className='w-[10rem]'>
+                  <Skeleton  width='10rem' className="m-1"></Skeleton>
+                </th>
+                <th className='w-[10rem]'>
+                  <Skeleton  width='10rem' className="m-1"></Skeleton>
+                </th>
+                <th className='w-[10rem]'>
+                  <Skeleton  width='10rem' className="m-1"></Skeleton>
+                </th>
+                <th className='w-[10rem]'>
+                  <Skeleton  width='10rem' className="m-1"></Skeleton>
+                </th>
+                <th className='w-[10rem]'>
+                  <Skeleton  width='10rem' className="m-1"></Skeleton>
+                </th>
+               
+              </tr>
+            ) : (
+                products?.map((item) => (
+                  <tr key={item?.$id} className='text-[12px]'>
+                    <th className='py-3'>{ item?.$id}</th>
+                    <th>{ item?.name }</th>
+                    <th>{ item?.brand }</th>
+                    <th>{ item?.country }</th>
+                    <th>{ item?.code }</th>
+                    <th>{ item?.sold }</th>
+                    <th>{ item?.category }</th>
+                    <th>{ item?.price }</th>
+                   
+                  </tr>
+                ))
+            ) 
+           }
+            
+          </tbody>
+        </table>
+        </div>
+
       </div>
     </div>
   )
