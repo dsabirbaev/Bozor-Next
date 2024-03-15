@@ -6,7 +6,7 @@ import { RxDashboard } from "react-icons/rx";
 import { LuUsers2 } from "react-icons/lu";
 import { CgLogOut } from "react-icons/cg";
 import { TbCategoryPlus } from "react-icons/tb";
-
+import { BiCartAdd } from "react-icons/bi";
 const Sidebar = () => {
   return (
     <div className="fixed top-0 left-0 bottom-0 z-[1000] h-screen dark:bg-gray-900 bg-[#f0f4f8]
@@ -32,6 +32,11 @@ const Sidebar = () => {
                     <li className=" hover:bg-blue-300  w-full flex text-lg font-['TTInterfaceMedium']">
                         <Link href="/admin-dashboard/categories" className="px-2 py-3 w-full flex items-center gap-x-2  focus:bg-white ">
                             <TbCategoryPlus className="text-xl"/> <span>Categories</span>
+                        </Link>
+                    </li>
+                    <li className=" hover:bg-blue-300  w-full flex text-lg font-['TTInterfaceMedium']">
+                        <Link href="/admin-dashboard/products" className="px-2 py-3 w-full flex items-center gap-x-2  focus:bg-white ">
+                            <BiCartAdd className="text-xl"/> <span>Products</span>
                         </Link>
                     </li>
                 </ul>

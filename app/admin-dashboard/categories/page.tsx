@@ -18,7 +18,7 @@ import { Skeleton } from 'primereact/skeleton';
 //// react icons
 import { LuLoader2 } from "react-icons/lu";
 
-
+import "./style.css"
 
 const page = () => {
   const [nameCateogy, setNameCategory] = useState<string>('');
@@ -75,15 +75,16 @@ const page = () => {
                     )
                 }
             </Button>
+            
         </div>
 
-        <ul className="flex flex-col gap-y-2">
+        <ul className="list-category flex flex-col gap-y-2">
             {
               loadingCategory ? (
                 <Skeleton height="2rem" className="mb-2" borderRadius="16px"></Skeleton>
               ) : (
                 categories?.map((item, index) => (
-                  <li key={item?.$id} className="bg-slate-400 text-white p-2">
+                  <li key={item?.$id} className=" p-2 ">
                     <span>{index+1}. </span>
                     <span className="text-lg">{item?.name}</span>
                   </li>
@@ -91,6 +92,7 @@ const page = () => {
               )
             }
         </ul>
+       
     </div>
   )
 }
