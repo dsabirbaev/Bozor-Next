@@ -39,7 +39,7 @@ const page = () => {
   const[sold, setSold] = useState<string>("");
   const[price, setPrice] = useState<string>("");
   const[categoryName, setCategoryName] = useState<string>("");
-  const[image, setImage] = useState<string[]>([]);
+  const[images, setImages] = useState<string[]>([]);
 
   //// get data
   const [categories, setCategories] = useState<ICategories[]>([])
@@ -54,7 +54,7 @@ const page = () => {
   const addProduct = async() => {
     setLoading(true)
     try{
-       await useCreateProduct(name, brand, description, country, code, sold, categoryName, price, image);
+       await useCreateProduct(name, brand, description, country, code, sold, categoryName, price, images);
        toast.current?.show({ severity: 'success', summary: 'Added', detail: 'Added product', life: 2000 });
        setLoading(false)
        setName('')
@@ -65,7 +65,7 @@ const page = () => {
        setSold('')
        setPrice('')
        setCategoryName('')
-       setImage('')
+       setImages([])
     }catch(error){
       setLoading(false)
       toast.current?.show({ severity: 'error', summary: 'Error', detail: 'Failed network', life: 2000 });
@@ -133,18 +133,22 @@ const page = () => {
             <UploadButton
               endpoint="imageUploader"
               onClientUploadComplete={(res) => {
-                setImage(res[0].url)
+                setImages(prevImages => [...prevImages, res[0].url]);
               }}
               onUploadError={(error: Error) => {
                 alert(`ERROR! ${error.message}`);
               }}
             />
           </div>
-          {
-            image.length ? (
-              <Image src={image} width={200} height={250} alt='image' className='bg-red w-full object-contain rounded-md' />
-            ) : null
-          }
+          <div className='grid grid-cols-3 gap-2 mb-4'>
+            {
+            images.length > 0 &&
+            images.map((imageUrl, index) => (
+                <Image key={index} src={imageUrl} width={200} height={200} alt={`image-${index}`} className='bg-red w-full object-contain rounded-md' />
+            ))
+            }
+          </div>
+          
          
           
           <Button onClick={() => addProduct()} className="flex items-center justify-center bg-bluegray-600 hover:bg-bluegray-400 border-bluegray-700 w-full">

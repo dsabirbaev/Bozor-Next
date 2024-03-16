@@ -22,7 +22,7 @@ const ProductCard: FC<ICardProps> = ({ data:{image, name, price, category} }) =>
   return (
     <div className='card bg-white w-[182px] h-[366px] rounded-[20px] overflow-hidden relative cursor-grab'>
         <div className="h-[225px] relative">
-            <Image  src={image}  fill  sizes="(max-width: 768px) 100vw,
+            <Image  src={image[0]}  fill  sizes="(max-width: 768px) 100vw,
               (max-width: 1200px) 50vw,
               33vw" style={{objectFit:"cover"}} alt="data"  />
         </div>
