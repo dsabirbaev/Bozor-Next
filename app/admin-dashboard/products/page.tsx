@@ -21,7 +21,7 @@ import { Toast } from 'primereact/toast';
 
 
 //// image api
-import { UploadButton } from '@uploadthing/react';
+import { UploadButton } from '@/app/utils/uploadthing';
 import "@uploadthing/react/styles.css";
 
 //// react icons
@@ -39,7 +39,7 @@ const page = () => {
   const[sold, setSold] = useState<string>("");
   const[price, setPrice] = useState<string>("");
   const[categoryName, setCategoryName] = useState<string>("");
-  const[image, setImage] = useState<string>("");
+  const[image, setImage] = useState<string[]>([]);
 
   //// get data
   const [categories, setCategories] = useState<ICategories[]>([])
@@ -65,6 +65,7 @@ const page = () => {
        setSold('')
        setPrice('')
        setCategoryName('')
+       setImage('')
     }catch(error){
       setLoading(false)
       toast.current?.show({ severity: 'error', summary: 'Error', detail: 'Failed network', life: 2000 });
@@ -101,11 +102,15 @@ const page = () => {
           <InputText value={name} onChange={(e) => setName(e.target.value)} placeholder='Name product' className='w-[35rem]'/>
           
           <InputText value={brand} onChange={(e) => setBrand(e.target.value)} placeholder='Brand product' className='w-[35rem]'/>
-          <InputTextarea value={description} onChange={(e) => setDescription(e.target.value)} rows={7} className='w-[35rem]' placeholder='Description' />
           <InputText value={country} onChange={(e) => setCountry(e.target.value)} placeholder='Production country' className='w-[35rem]'/>
           <InputText value={code} onChange={(e) => setCode(e.target.value)} placeholder='Code product' className='w-[35rem]'/>
           <InputText value={sold} onChange={(e) => setSold(e.target.value)} placeholder='Count sold' className='w-[35rem]'/>
           <InputText value={price} onChange={(e) => setPrice(e.target.value)} placeholder='Price' className='w-[35rem]'/>
+
+          <div className='relative'>
+            <InputTextarea value={description} onChange={(e) => setDescription(e.target.value)} rows={7} className='w-[35rem]' placeholder='Description' />
+            <p className="absolute right-2 bottom-3 text-[12px] text-gray-500">{description ? description.length : 0}/200</p>
+          </div>
 
           <select className='p-2 w-[35rem] text-gray-500 text-[16px]' onChange={(e) => setCategoryName(e.target.value)}>
             <option defaultValue="Category">Category</option>
@@ -128,7 +133,6 @@ const page = () => {
             <UploadButton
               endpoint="imageUploader"
               onClientUploadComplete={(res) => {
-              
                 setImage(res[0].url)
               }}
               onUploadError={(error: Error) => {
@@ -146,11 +150,11 @@ const page = () => {
           <Button onClick={() => addProduct()} className="flex items-center justify-center bg-bluegray-600 hover:bg-bluegray-400 border-bluegray-700 w-full">
               { 
                   loading ? (
-                  <div className="flex items-center justify-center ">
-                      <LuLoader2 className="animate-spin w-8 h-6"/>
-                  </div>
+                    <div className="flex items-center justify-center ">
+                        <LuLoader2 className="animate-spin w-8 h-6"/>
+                    </div>
                   ) : (
-                  <span>Add Product</span>
+                    <span>Add Product</span>
                   )
               }
           </Button>

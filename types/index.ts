@@ -52,3 +52,9 @@ export interface IProducts {
     price: string
 }
 
+
+export interface ICardProps {
+    data: IProducts;
+}
+
+
