@@ -4,21 +4,29 @@ import { FC } from "react";
 import { useState } from "react";
 import Image from "next/image"
 
+//// store
+import { useModalStoreDetail } from "@/stores/modalStore";
+
 //// types
 import { ICardProps } from "@/types";
 
+//// modal window
+import DetailModal from "../Modals/DetailModal";
 //// react icons
 import { FaRegHeart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import { CiCirclePlus } from "react-icons/ci";
 
+//// css
 import "./style.css"
 
 
 const ProductCard: FC<ICardProps> = ({ data:{image, name, price, category} }) => {
-  
-  const[active, setActive] = useState<boolean>(false)
 
+
+  const { toggleModal, isOpen } = useModalStoreDetail();
+  const[active, setActive] = useState<boolean>(false)
+     
   return (
     <div className='card bg-white w-[182px] h-[366px] rounded-[20px] overflow-hidden relative cursor-grab'>
         <div className="h-[225px] relative">
@@ -34,9 +42,11 @@ const ProductCard: FC<ICardProps> = ({ data:{image, name, price, category} }) =>
         
         
         </span>
-        <button className="btn-card absolute top-[90px] right-5 bg-[#F5F5F7] backdrop-blur-[2px] block border-none outline-none text-[12px] font-['TTInterfaceMedium'] border-[8px] w-[80%] py-[12px] text-[#020105]">
+        <button onClick={toggleModal} className="btn-card absolute top-[90px] right-5 bg-[#F5F5F7] backdrop-blur-[2px] block border-none outline-none text-[12px] font-['TTInterfaceMedium'] border-[8px] w-[80%] py-[12px] text-[#020105]">
             Tezkor korish
         </button>
+
+        <DetailModal />
 
         <div className="p-[10px] flex flex-col justify-between">
             <div className="mb-2">

@@ -8,6 +8,8 @@ import ProductCard from "./UI/Card/ProductCard";
 import useGetAllProducts from "@/hooks/useGetAllProducts";
 
 
+import { Skeleton } from 'primereact/skeleton';
+
 //// types
 import { IProducts } from "@/types";
 
@@ -46,15 +48,20 @@ const Products = () => {
     getAllProducts();
   }, [])
   return (
-    <section>
+    <section className="py-10">
         <div className="container">
             <h2 className="font-['TTInterfaceBold'] text-[20px] mb-5">Produktlar</h2>
 
             <div className="grid grid-cols-6 gap-y-6 ">
                 {
+                   loadingProducs ? (
+                    <Skeleton width="10rem" height="12rem"></Skeleton>
+                   ): (
                     products?.map((item) => (
-                        <ProductCard data={item} key={item?.$id}/>
+                      <ProductCard data={item} key={item?.$id}/>
                     ))
+                   )
+                   
                 }
             </div>
         </div>
