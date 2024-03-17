@@ -21,12 +21,12 @@ import { CiCirclePlus } from "react-icons/ci";
 import "./style.css"
 
 
-const ProductCard: FC<ICardProps> = ({ data:{image, name, price, category} }) => {
+const ProductCard: FC<ICardProps> = ({ data:{image, name, price, category, $id} }) => {
 
 
-  const { toggleModal, isOpen } = useModalStoreDetail();
+  const { toggleModal } = useModalStoreDetail();
   const[active, setActive] = useState<boolean>(false)
-     
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   return (
     <div className='card bg-white w-[182px] h-[366px] rounded-[20px] overflow-hidden relative cursor-grab'>
         <div className="h-[225px] relative">
@@ -42,11 +42,12 @@ const ProductCard: FC<ICardProps> = ({ data:{image, name, price, category} }) =>
         
         
         </span>
-        <button onClick={toggleModal} className="btn-card absolute top-[90px] right-5 bg-[#F5F5F7] backdrop-blur-[2px] block border-none outline-none text-[12px] font-['TTInterfaceMedium'] border-[8px] w-[80%] py-[12px] text-[#020105]">
+        <button onClick={() => setIsModalOpen(true)}className="btn-card absolute top-[90px] right-5 bg-[#F5F5F7] backdrop-blur-[2px] block border-none outline-none text-[12px] font-['TTInterfaceMedium'] border-[8px] w-[80%] py-[12px] text-[#020105]">
             Tezkor korish
         </button>
-
-        <DetailModal />
+        <DetailModal id={$id} isOpen={isModalOpen} toggleModal={() => setIsModalOpen(false)} />
+      
+        
 
         <div className="p-[10px] flex flex-col justify-between">
             <div className="mb-2">

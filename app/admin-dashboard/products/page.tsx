@@ -54,6 +54,7 @@ const page = () => {
   const addProduct = async() => {
     setLoading(true)
     try{
+      
        await useCreateProduct(name, brand, description, country, code, sold, categoryName, price, images);
        toast.current?.show({ severity: 'success', summary: 'Added', detail: 'Added product', life: 2000 });
        setLoading(false)
@@ -69,6 +70,7 @@ const page = () => {
     }catch(error){
       setLoading(false)
       toast.current?.show({ severity: 'error', summary: 'Error', detail: 'Failed network', life: 2000 });
+      console.log(error)
     }
   }
 

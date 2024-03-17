@@ -7,7 +7,7 @@
 
 import { database, unique_id } from "@/lib/appwrite";
 
-const useCreateProduct = async(name: string, brand: string, description: string, country: string, code: string, sold: string, category: string, price: string, images: string) => {
+const useCreateProduct = async(name: string, brand: string, description: string, country: string, code: string, sold: string, category: string, price: string, images: string[]) => {
     const data = {
         name: name,
         brand: brand,
