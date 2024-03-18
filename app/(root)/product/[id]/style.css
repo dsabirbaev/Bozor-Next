@@ -1,0 +1,12 @@
+
+
+.p-galleria-thumbnail-container{
+    background-color: whitesmoke;
+}
+
+.image-gallery{
+    border: 1px solid  #d4d4d4;
+    border-radius: 12px;
+    margin-left: 15px;
+    padding: 5px;
+}

@@ -18,10 +18,11 @@ const Products = () => {
     const [products, setProducts] = useState<IProducts[]>([]);
     const [loadingProducs, setLoadingProducts] = useState<boolean>(false);
   
-  
+    
     const getAllProducts = async() => {
       setLoadingProducts(true)
       try{
+        
         const res = await useGetAllProducts();
         setProducts(
           res?.documents.map((doc) => ({
@@ -38,14 +39,19 @@ const Products = () => {
   
           }))
         );
-        setLoadingProducts(false)
+       
       }catch(error){
-        setLoadingProducts(false)
+        throw error
+      }finally{
+        setTimeout(() => {
+          setLoadingProducts(false)
+        }, 1000);
       }
     }
   
   useEffect(() => {
     getAllProducts();
+    
   }, [])
   return (
     <section className="py-10">
@@ -55,9 +61,11 @@ const Products = () => {
             <div className="grid grid-cols-6 gap-y-6 ">
                 {
                    loadingProducs ? (
-                    <Skeleton width="10rem" height="12rem"></Skeleton>
-                   ): (
-                    products?.map((item) => (
+                    Array.from(Array(products.length), (_, i) => (
+                      <Skeleton key={i} width="10rem" height="12rem" />
+                    ))
+                    ): (
+                      products?.map((item) => (
                       <ProductCard data={item} key={item?.$id}/>
                     ))
                    )

@@ -10,13 +10,13 @@ import Link from "next/link";
 //// hooks
 import useGetProductById from "@/hooks/useGetProductById";
 
-//// store
-import {useModalStoreDetail} from '@/stores/modalStore';
+
 
 
 //// UI prime
 import { Dialog } from 'primereact/dialog';
 import { Button } from 'primereact/button';
+import {Galleria} from "primereact/galleria";
 
 //// types
 import { IProducts } from "@/types";
@@ -32,6 +32,11 @@ import { IoIosArrowRoundForward } from "react-icons/io";
 import { FaFacebookF } from "react-icons/fa";
 import { FaTelegramPlane } from "react-icons/fa";
 
+
+
+
+
+
 interface ICardID {
   id: string
 }
@@ -39,7 +44,7 @@ interface ICardID {
 const DetailModal: FC<ICardID & { isOpen: boolean; toggleModal: () => void }> = ({ id, isOpen, toggleModal }) => {
  
   // console.log(id)
-  const [product, setProduct] = useState<IProducts>(); 
+  const [product, setProduct] = useState<IProducts | null>(); 
   const [loading, setLoading] = useState<boolean>(false); 
   const[active, setActive] = useState<boolean>(false)
 
@@ -75,6 +80,40 @@ const DetailModal: FC<ICardID & { isOpen: boolean; toggleModal: () => void }> = 
     }
   }, [id, isOpen])
 
+
+  //// gallery
+  const responsiveOptions = [
+    {
+        breakpoint: "991px",
+        numVisible: 8,
+    },
+    {
+        breakpoint: "767px",
+        numVisible: 3,
+    },
+    {
+        breakpoint: "575px",
+        numVisible: 1,
+    },
+  ];
+
+
+
+  const itemTemplate = (item: string) => {
+    return (
+      <img
+        src={item}
+        alt={product?.name}
+        className="w-full h-[500px] object-cover border border-gray-300"
+      />
+    );
+  };
+  
+  const thumbnailTemplate = (item: string) => {
+    return <img src={item} alt={product?.name} className="w-[85px] min-h-[40px] bg-red-400" />;
+  };
+    
+
   return (
     
     <>
@@ -86,10 +125,23 @@ const DetailModal: FC<ICardID & { isOpen: boolean; toggleModal: () => void }> = 
               <TbLoader3 className="text-blue-400 text-[150px] animate-spin"/>
             </div>
           ): (
-            <div className='flex items-center justify-between'>
-              <div className="bg-red-400 w-[50%]">
-
+            <div className='flex gap-x-2'>
+              <div className="w-[50%]">
+                <Galleria
+                  value={(product?.image || []) as string[]} 
+                  responsiveOptions={responsiveOptions}
+                  numVisible={4}
+                  item={itemTemplate}
+                  thumbnail={thumbnailTemplate}
+                  indicatorsPosition="left"
+                  thumbnailsPosition="left"
+                  showItemNavigators={true}
+                />
+              
               </div>
+
+
+
               <div className="flex flex-col w-[50%] gap-y-[24px]">
                 <div className="flex justify-between items-center">
                   <div className="flex items-center gap-x-2">
@@ -126,7 +178,7 @@ const DetailModal: FC<ICardID & { isOpen: boolean; toggleModal: () => void }> = 
                 </div>
 
                 
-                <Link  href="#" className="flex items-center gap-x-2">
+                <Link  href={`/product/${product?.$id}`} className="flex items-center gap-x-2">
                   <span className="text-[#1976d2] text-[18px] font-['TTInterfaceMedium']">Mahsulot haqida batafsil</span>
                   <IoIosArrowRoundForward className="text-[26px] text-[#1976d2]" />
         

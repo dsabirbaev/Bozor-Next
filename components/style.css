@@ -50,3 +50,8 @@
 .brend-list__second li{
     border-bottom: none;
 }
+
+
+.p-galleria-thumbnail-container{
+    background-color: whitesmoke;
+}
