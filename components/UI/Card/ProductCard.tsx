@@ -12,6 +12,7 @@ import { ICardProps } from "@/types";
 
 //// modal window
 import DetailModal from "../Modals/DetailModal";
+
 //// react icons
 import { FaRegHeart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
