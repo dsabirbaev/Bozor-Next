@@ -3,6 +3,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 //// hooks
 import useGetProductById from "@/hooks/useGetProductById";
@@ -19,11 +20,14 @@ import { FaFacebookF } from "react-icons/fa";
 import { FaTelegramPlane } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
-import { TbTruckDelivery } from "react-icons/tb";
+
+//// image
+import { car } from '@/assets/images';
 
 ////  UI prime
 import {Galleria} from "primereact/galleria";
 import { Button } from 'primereact/button';
+import { TabView, TabPanel } from 'primereact/tabview';
 
 //// css
 import "./style.css"
@@ -93,18 +97,18 @@ const page =  ({ params: { id } }: Props) => {
         <img
             src={item}
             alt={product?.name}
-            className="w-full h-[500px] object-cover border border-gray-300 image-gallery"
+            className="w-[448px] h-[450px] object-contain image-gallery"
         />
         );
     };
   
     const thumbnailTemplate = (item: string) => {
-        return <img src={item} alt={product?.name} className="w-[85px] min-h-[40px] bg-red-400" />;
+        return <img src={item} alt={product?.name} className="w-[85px] min-h-[40px]" />;
     };
 
 
     return (
-        <section className="py-10">
+        <section id="detail-page" className="py-10">
             <div className='container'>
                 <div className="flex flex-col">
                     <div className="flex items-center text-[14px] mb-10 font-['TTInterfaceMedium']">
@@ -164,13 +168,13 @@ const page =  ({ params: { id } }: Props) => {
 
                        </div>
 
-                        <div className="flex  justify-center gap-x-10">
+                        <div className="flex  justify-center gap-x-10 mb-10">
                             <div className="w-[40%] border-solid border-[#f5f5f7] rounded-[8px] py-[10px] px-[20px]">
-                                <h4 className="text-[#5d5d5f] text-[16px] font-['TTInterfaceMedium']">Yetkazib berish</h4>
-                                <div className="flex gap-x-10 items-center">
-                                    <p>Buyurtmalarni 23:59 gacha qabul qilamiz va bir kun ichida yetkazib beramiz</p>
+                                <h4 className="text-[#5d5d5f] text-[16px] font-['TTInterfaceMedium'] underline mb-[14px]">Yetkazib berish</h4>
+                                <div className="flex items-center">
+                                    <p className="text-[#9a999b] text-[16px] m-w-[195px] leading-[1.5]">Buyurtmalarni <span className="text-[#2b4fab]">23:59</span> gacha qabul qilamiz va bir kun ichida yetkazib beramiz</p>
 
-                                    {/* <TbTruckDelivery className="text-[150px] bg-red-400"/> */}
+                                    <Image src={car} alt="car" />
                                 </div>
                             </div>
 
@@ -190,6 +194,23 @@ const page =  ({ params: { id } }: Props) => {
                                 </Button>
                             </div>
 
+                        </div>
+
+                        <div className="flexs pl-24">
+                            <TabView>
+                                <TabPanel header="Mahsulot tavsifi" className='bg-transparent'>
+                                    <p className="m-0 text-justify leading-[1.4]">
+                                        {product?.description}
+                                    </p>
+                                </TabPanel>
+                                <TabPanel header="Sharhlar (0)">
+                                    <p className="m-0">
+                                        Sharhlar yo'q
+                                    </p>
+                                </TabPanel>
+                
+                
+                            </TabView>
                         </div>
                     </div>
 
