@@ -103,7 +103,7 @@ const page =  ({ params: { id } }: Props) => {
     };
   
     const thumbnailTemplate = (item: string) => {
-        return <img src={item} alt={product?.name} className="w-[85px] min-h-[40px]" />;
+        return <img src={item} alt={product?.name} className="w-[80px] h-[80px] object-contain " />;
     };
 
 

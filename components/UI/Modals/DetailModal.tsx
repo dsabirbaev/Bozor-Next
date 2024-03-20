@@ -33,6 +33,8 @@ import { FaFacebookF } from "react-icons/fa";
 import { FaTelegramPlane } from "react-icons/fa";
 
 
+//// css
+import "./style.css"
 
 
 
@@ -104,13 +106,13 @@ const DetailModal: FC<ICardID & { isOpen: boolean; toggleModal: () => void }> = 
       <img
         src={item}
         alt={product?.name}
-        className="w-full h-[500px] object-cover border border-gray-300"
+        className="w-full h-[500px] object-contain image-gallery"
       />
     );
   };
   
   const thumbnailTemplate = (item: string) => {
-    return <img src={item} alt={product?.name} className="w-[85px] min-h-[40px] bg-red-400" />;
+    return <img src={item} alt={product?.name} className="w-[80px] h-[80px] object-contain" />;
   };
     
 
@@ -126,15 +128,15 @@ const DetailModal: FC<ICardID & { isOpen: boolean; toggleModal: () => void }> = 
             </div>
           ): (
             <div className='flex gap-x-5'>
-              <div className="w-[50%]">
+              <div id="detail-modal" className="w-[50%]">
                 <Galleria
                   value={(product?.image || []) as string[]} 
                   responsiveOptions={responsiveOptions}
                   numVisible={4}
                   item={itemTemplate}
                   thumbnail={thumbnailTemplate}
-                  indicatorsPosition="left"
-                  thumbnailsPosition="left"
+                  indicatorsPosition="bottom"
+                  thumbnailsPosition="bottom"
                   showItemNavigators={true}
                 />
               
