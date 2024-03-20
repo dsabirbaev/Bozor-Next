@@ -125,7 +125,7 @@ const DetailModal: FC<ICardID & { isOpen: boolean; toggleModal: () => void }> = 
               <TbLoader3 className="text-blue-400 text-[150px] animate-spin"/>
             </div>
           ): (
-            <div className='flex gap-x-2'>
+            <div className='flex gap-x-5'>
               <div className="w-[50%]">
                 <Galleria
                   value={(product?.image || []) as string[]} 

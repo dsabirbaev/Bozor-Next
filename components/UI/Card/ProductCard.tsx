@@ -3,7 +3,7 @@
 import { FC } from "react";
 import { useState } from "react";
 import Image from "next/image"
-
+import Link from "next/link";
 //// store
 import { useModalStoreDetail } from "@/stores/modalStore";
 
@@ -29,12 +29,13 @@ const ProductCard: FC<ICardProps> = ({ data:{image, name, price, category, $id} 
   const[active, setActive] = useState<boolean>(false)
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   return (
-    <div className='card bg-white w-[182px] h-[366px] rounded-[20px] overflow-hidden relative cursor-grab'>
-        <div className="h-[225px] relative">
-            <Image  src={image[0]}  fill  sizes="(max-width: 768px) 100vw,
-              (max-width: 1200px) 50vw,
-              33vw" style={{objectFit:"cover"}} alt="data"  />
-        </div>
+    <div className='card w-[182px] bg-white h-[366px] overflow-hidden  rounded-[20px]  relative cursor-grab'>
+       <Link href={`/product/${$id}`}>
+            <div className="h-[225px] relative">
+                <Image  src={image[0]}  fill  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" style={{objectFit:"cover"}} alt="data"  />
+            </div>
+       </Link>
+       
 
         <span onClick={() => setActive(!active)} className="absolute top-4 right-4 w-[30px] h-[30px] bg-[#F5F5F7] rounded-full flex items-center justify-center"> 
         {
@@ -49,21 +50,23 @@ const ProductCard: FC<ICardProps> = ({ data:{image, name, price, category, $id} 
         <DetailModal id={$id} isOpen={isModalOpen} toggleModal={() => setIsModalOpen(false)} />
       
         
-
-        <div className="p-[10px] flex flex-col justify-between">
-            <div className="mb-2">
-                <div className="flex items-center justify-between mb-4">
-                    <span className="text-[14px] text-[#2B4FAB] font-['TTInterfaceSemiBold']">{price}</span>
-                    <span className="pi pi-plus-circle"></span>
-                    <CiCirclePlus  className="text-[25px] text-[#2B4FAB]"/>
+        <Link href={`/product/${$id}`}>
+            <div className="p-[10px] flex flex-col justify-between h-[140px]">
+                <div className="mb-2">
+                    <div className="flex items-center justify-between mb-4">
+                        <span className="text-[14px] text-[#2B4FAB] font-['TTInterfaceSemiBold']">{price}</span>
+                        <span className="pi pi-plus-circle"></span>
+                        <CiCirclePlus  className="text-[25px] text-[#2B4FAB]"/>
+                    </div>
+                    <div className="flex items-center justify-between text-[12px]">
+                        <span>Kategoriya: </span>  <span className="text-[10px]">{category}</span>
+                    </div>
+                
                 </div>
-                <div className="flex items-center justify-between text-[13px] mb-2">
-                    <span>Kategoriya: </span>  <span>{category}</span>
-                </div>
-                <p className="text-[#020105] text-[12px] h-[55px]">{name}</p>
+                <p className="text-[#020105] text-[12px]">{name}</p>
             </div>
-            
-        </div>
+        </Link>
+        
     </div>
   )
 }

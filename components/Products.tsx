@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import ProductCard from "./UI/Card/ProductCard";
-
+import Link from "next/link";
 
 //// hooks
 import useGetAllProducts from "@/hooks/useGetAllProducts";
