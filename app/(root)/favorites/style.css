@@ -1,0 +1,11 @@
+
+
+
+.catalog-banner{
+    background-color: rgb(43, 79, 171);;
+    border-radius: 32px;
+    background-image: url("https://bozor.com/_nuxt/img/bread-crumbs-left.2d5cb17.webp"),url("https://bozor.com/_nuxt/img/bread-crumbs-right.a731d04.webp");
+    background-repeat: no-repeat;
+    background-position: 100%,0;
+    background-size: 600px;
+}

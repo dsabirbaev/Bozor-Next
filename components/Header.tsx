@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -14,6 +14,9 @@ import {useModalStore} from '@/stores/modalStore';
 import { useProfileStore } from '@/stores/profile';
 
 
+//// hooks
+import useGetAllLikes from '@/hooks/useGetAllLikes';
+
 //// react icons
 import { FaThList } from "react-icons/fa";
 import { CiSearch } from "react-icons/ci";
@@ -23,16 +26,35 @@ import { FaRegUser } from "react-icons/fa";
 import { HiOutlineShoppingCart } from "react-icons/hi2";
 import { IoHeartOutline } from "react-icons/io5";
 
+import { Badge } from 'primereact/badge';
+
 const Header = () => {
   
+  const[wishList, setWishList] = useState<number>();
+
   const { toggleModal } = useModalStore();
   let { currentProfile } = useProfileStore()
   
+  
+
   const[dropdown, setDropdown] = useState(false);
   const toggleDropdown = () => {
      setDropdown(!dropdown)
   }
+
+  const getAllLikes = async() => {
+    try{
+      const res = await useGetAllLikes();
+      
+      setWishList(res.documents.length)
+    }catch(error){
+      throw error
+    }
+  }
   
+  useEffect(() => {
+    getAllLikes()
+  },[])
   return (
     <header className='bg-white'>
       <div className='container'>
@@ -77,8 +99,8 @@ const Header = () => {
               }     
           </div>
 
-          <Link href="/favorites" title="Saralanganlar" className="flex items-center rounded-md bg-[#F5F7FA] h-[45px] px-[13px]">
-              
+          <Link href="/favorites" title="Saralanganlar" className="relative flex items-center rounded-md bg-[#F5F7FA] h-[45px] px-[13px]">
+              <Badge className='absolute  text-[10px] right-[-8px] top-[-8px]' value={wishList}></Badge>
               <IoHeartOutline className="text-[18px]"/>
           </Link>
 

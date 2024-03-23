@@ -11,7 +11,7 @@ import useCreateLike from "@/hooks/useCreateLike";
 import useDeleteLike from "@/hooks/useDeleteLike";
 import useGetLikesByUserId from "@/hooks/useGetLikesByUserId";
 import useIsLiked from "@/hooks/useIsLiked";
-
+import useGetAllLikes from "@/hooks/useGetAllLikes";
 
 //// store
 import { useProfileStore } from "@/stores/profile";
@@ -97,6 +97,7 @@ const ProductCard: FC<ICardProps> = ({ data:{image, name, price, category, $id} 
             likes.forEach((like: Like) => {
                 if (currentProfile?.user_id == like?.user_id && like?.product_id == $id) {
                     unlike(like?.id) 
+                     
                 }
             })
         }
