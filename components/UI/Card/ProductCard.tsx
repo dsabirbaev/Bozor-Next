@@ -11,10 +11,11 @@ import useCreateLike from "@/hooks/useCreateLike";
 import useDeleteLike from "@/hooks/useDeleteLike";
 import useGetLikesByUserId from "@/hooks/useGetLikesByUserId";
 import useIsLiked from "@/hooks/useIsLiked";
-import useGetAllLikes from "@/hooks/useGetAllLikes";
+
 
 //// store
 import { useProfileStore } from "@/stores/profile";
+import { useLikesStore } from "@/stores/like";
 
 //// types
 import { ICardProps } from "@/types";
@@ -22,7 +23,7 @@ import { Like } from "@/types";
 
 //// modal window
 import DetailModal from "../Modals/DetailModal";
-import LoginModal from "../Modals/LoginModal";
+
 
 //// react icons
 import { FaRegHeart } from "react-icons/fa";
@@ -39,7 +40,7 @@ import { Toast } from 'primereact/toast';
 const ProductCard: FC<ICardProps> = ({ data:{image, name, price, category, $id} }) => {
 
 
-
+  const { getAllLikes } = useLikesStore();
   
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [userLiked, setUserLiked] = useState<boolean>(false)
@@ -47,6 +48,7 @@ const ProductCard: FC<ICardProps> = ({ data:{image, name, price, category, $id} 
 
 
   let { currentProfile } = useProfileStore()
+
   const toast = useRef<Toast>(null);
   
 
@@ -67,21 +69,25 @@ const ProductCard: FC<ICardProps> = ({ data:{image, name, price, category, $id} 
         setUserLiked(res ? true : false)
    }
 
-
+ 
 
     const like = async () => {
         await useCreateLike(currentProfile?.user_id || '', $id)
         await getAllLikesByProduct()
         hasUserLikedProduct()
+        getAllLikes()
     }
+
+  
 
     const unlike = async (id: string) => {
         await useDeleteLike(id)
         await getAllLikesByProduct()
         hasUserLikedProduct()
+        getAllLikes()
     }
 
- 
+   
 
     const likeOrUnlike = () => {
         if (!currentProfile?.user_id) {

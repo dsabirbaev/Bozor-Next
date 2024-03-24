@@ -6,7 +6,10 @@ import Link from "next/link"
 
 //// hooks
 import useGetAllCategory from "@/hooks/useGetAllCategory";
-import useGetAllLikes from "@/hooks/useGetAllLikes";
+
+
+//// stores
+import { useLikesStore } from "@/stores/like";
 
 //// react icons
 import { FaRegTrashCan } from "react-icons/fa6";
@@ -17,11 +20,24 @@ import { ICategories } from "@/types";
 //// css
 import "./style.css"
 
+//// card component
+import ProductCard from "@/components/UI/Card/ProductCard";
+
+interface IWishList {
+  user_id: string,
+  product_id: string,
+  $id: string,
+}
+
 const page = () => {
 
 
   const [categories, setCategories] = useState<ICategories[]>([])
-  const[wishList, setWishList] = useState<number>();
+  const[wishList, setWishList] = useState<IWishList[]>([]);
+
+  const { getAllLikes, allLikes } = useLikesStore();
+
+
   const getAllCategory = async() => {
     try{
       const res = await useGetAllCategory()
@@ -35,20 +51,18 @@ const page = () => {
   }
 
 
-  const getAllLikes = async() => {
-    try{
-      const res = await useGetAllLikes();
-      console.log(res.documents)
-      setWishList(res.documents.length)
-    }catch(error){
-      throw error
-    }
-  }
+  
 
+
+ 
   useEffect(() => {
     getAllCategory()
-    getAllLikes()
+   
+
   }, [])
+
+ 
+ 
   return (
     <section className="pt-10 pb-10">
       <div className="container p-[12px]">
@@ -57,7 +71,7 @@ const page = () => {
                 Bosh sahifa
             </Link>
             <h1 className="text-white font-['TTInterfaceBold'] text-[35px] my-[16px]">Saralanganlar</h1>
-            <p className="text-[16px] text-white font-['TTInterfaceSemiBold']">{wishList} mahsulot</p>
+            <p className="text-[16px] text-white font-['TTInterfaceSemiBold']">{allLikes.length} mahsulot</p>
         </div>
       
 
@@ -73,7 +87,7 @@ const page = () => {
                 </div>
             </div>
 
-            <div>
+            <div className="flex gap-x-5">
                 <div className="bg-white w-[300px] rounded-[20px] py-[32px] px-[24px]">
                     <h2 className="text-[#353437] font-['TTInterfaceBold'] text-[24px] mb-[23px]">Kategoriya</h2>
                     <ul className="flex flex-col gap-y-4 p-0 font-['TTInterfaceSemiBold'] ">
@@ -85,8 +99,12 @@ const page = () => {
                     </ul>
                 </div>
 
-                <div>
-                      
+                <div className="grid grid-cols-4 gap-4">
+                  {
+                    allLikes?.map((item) => (
+                      <ProductCard data={item} key={item?.$id}/>
+                    ))
+                  }   
                 </div>
             </div>
         </div>

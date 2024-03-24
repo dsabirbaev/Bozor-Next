@@ -10,8 +10,9 @@ import Image from 'next/image'
 import LoginModal from './UI/Modals/LoginModal';
 
 //// stores
-import {useModalStore} from '@/stores/modalStore';
+import { useModalStore } from '@/stores/modalStore';
 import { useProfileStore } from '@/stores/profile';
+import { useLikesStore } from '@/stores/like';
 
 
 //// hooks
@@ -30,28 +31,19 @@ import { Badge } from 'primereact/badge';
 
 const Header = () => {
   
-  const[wishList, setWishList] = useState<number>();
 
+  //// stores
   const { toggleModal } = useModalStore();
   let { currentProfile } = useProfileStore()
-  
-  
+  const { allLikes, getAllLikes } = useLikesStore();
+ 
+
 
   const[dropdown, setDropdown] = useState(false);
   const toggleDropdown = () => {
      setDropdown(!dropdown)
   }
 
-  const getAllLikes = async() => {
-    try{
-      const res = await useGetAllLikes();
-      
-      setWishList(res.documents.length)
-    }catch(error){
-      throw error
-    }
-  }
-  
   useEffect(() => {
     getAllLikes()
   },[])
@@ -100,7 +92,7 @@ const Header = () => {
           </div>
 
           <Link href="/favorites" title="Saralanganlar" className="relative flex items-center rounded-md bg-[#F5F7FA] h-[45px] px-[13px]">
-              <Badge className='absolute  text-[10px] right-[-8px] top-[-8px]' value={wishList}></Badge>
+              <Badge className='absolute  text-[10px] right-[-8px] top-[-8px]' value={allLikes.length}></Badge>
               <IoHeartOutline className="text-[18px]"/>
           </Link>
 
