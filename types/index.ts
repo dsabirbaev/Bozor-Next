@@ -64,3 +64,9 @@ export interface Like {
     user_id: string;
     product_id: string;
 }
+
+
+export interface ILikesStore {
+    allLikes: IProducts[];
+    getAllLikes: () => void;
+}

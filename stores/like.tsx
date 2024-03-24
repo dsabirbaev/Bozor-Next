@@ -3,26 +3,11 @@ import { create } from 'zustand';
 import useGetAllLikes from '@/hooks/useGetAllLikes';
 import useGetProductById from '@/hooks/useGetProductById';
 
+import { ILikesStore } from '@/types';
   
-interface Like {
-  name: string,
-  brand: string,
-  $id: string,
-  description: string,
-  country: string,
-  image: string,
-  code: string,
-  sold: string,
-  category: string,
-  price: string
-}
 
-interface LikesState {
-    allLikes: Like[];
-    getAllLikes: () => void;
-}
 
-export const useLikesStore = create<LikesState>((set) => ({
+export const useLikesStore = create<ILikesStore>((set) => ({
   allLikes: [],
   getAllLikes: async () => {
     try {

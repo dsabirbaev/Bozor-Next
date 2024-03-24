@@ -23,17 +23,12 @@ import "./style.css"
 //// card component
 import ProductCard from "@/components/UI/Card/ProductCard";
 
-interface IWishList {
-  user_id: string,
-  product_id: string,
-  $id: string,
-}
+
 
 const page = () => {
 
 
   const [categories, setCategories] = useState<ICategories[]>([])
-  const[wishList, setWishList] = useState<IWishList[]>([]);
 
   const { getAllLikes, allLikes } = useLikesStore();
 
@@ -58,7 +53,6 @@ const page = () => {
   useEffect(() => {
     getAllCategory()
    
-
   }, [])
 
  
